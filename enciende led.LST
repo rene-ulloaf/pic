@@ -1,0 +1,138 @@
+MPASM  5.03                  ENCIENDE LED.ASM   11-16-2011  17:30:07         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (LIST)
+                      00001 LIST P=16F84
+  00000003            00002 STATUS EQU 3
+  00000005            00003 PORTA EQU 5
+  00000005            00004 TRISA EQU 5
+  00000006            00005 PORTB EQU 6
+  00000006            00006 TRISB EQU 6
+  00000005            00007 RP0 EQU 5
+Warning[205]: Found directive in column 1. (ORG)
+000C                  00008 ORG 0XC
+000C                  00009 CONTA RES 1 ; REGISTRO GENERAL PARA EL RETARDO
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00010 ORG 0X00
+0000   1683           00011 INICIO BSF STATUS,RP0 ; ENTRA EN EL BANCO 1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0001   301F           00012 MOVLW 0X1F ; MUEVE 1Fh A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+0002   0085           00013 MOVWF TRISA ; CONFIGURA EL PUERTO A COMO ENTRADA
+Warning[203]: Found opcode in column 1. (MOVLW)
+0003   3000           00014 MOVLW 0X00 ; MUEVE 00 A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+0004   0086           00015 MOVWF TRISB ; CONFIGURA EL PUERTO B COMO SALIDA
+Warning[203]: Found opcode in column 1. (BCF)
+0005   1283           00016 BCF STATUS,RP0 ; SALE DEL BANCO 1
+Warning[203]: Found opcode in column 1. (CLRF)
+0006   0186           00017 CLRF PORTB ; LIMPIA EL PUERTO B
+0007   1E05           00018 OTRA BTFSS PORTA,4 ; PREGUNTA SI EL PIN 4 DEL PUERTO A ES CERO
+Warning[203]: Found opcode in column 1. (GOTO)
+0008   2807           00019 GOTO OTRA ; SALTA A LA ETIQUETA OTRA
+Warning[203]: Found opcode in column 1. (MOVLW)
+0009   3018           00020 MOVLW 0X18 ; MUEVE 18h A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+000A   0086           00021 MOVWF PORTB ; CARGA W EN EL PUERTO B
+Warning[203]: Found opcode in column 1. (CALL)
+000B   201D           00022 CALL RETARDO ; LLAMA A LA ETIQUETA RETARDO
+Warning[203]: Found opcode in column 1. (BTFSS)
+000C   1E05           00023 BTFSS PORTA,4 ; PREGUNTA SI EL PIN 4 DEL PUERTO A ES CERO
+Warning[203]: Found opcode in column 1. (GOTO)
+000D   281B           00024 GOTO OTRA1 ; SALTA A LA ETIQUETA OTRA1
+Warning[203]: Found opcode in column 1. (MOVLW)
+000E   3024           00025 MOVLW 0X24 ; MUEVE 24h A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+000F   0086           00026 MOVWF PORTB ; CARGA W EN EL PUERTO B
+Warning[203]: Found opcode in column 1. (CALL)
+0010   201D           00027 CALL RETARDO ; LLAMA A LA ETIQUETA RETARDO
+Warning[203]: Found opcode in column 1. (BTFSS)
+0011   1E05           00028 BTFSS PORTA,4 ; PREGUNTA SI EL PIN 4 DEL PUERTO A ES CERO
+Warning[203]: Found opcode in column 1. (GOTO)
+0012   281B           00029 GOTO OTRA1 ; SALTA A LA ETIQUETA OTRA1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0013   3042           00030 MOVLW 0X42 ; MUEVE 42h A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+0014   0086           00031 MOVWF PORTB ; CARGA W EN EL PUERTO B
+MPASM  5.03                  ENCIENDE LED.ASM   11-16-2011  17:30:07         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (CALL)
+0015   201D           00032 CALL RETARDO ; LLAMA A A LA ETIQUETA RETARDO
+Warning[203]: Found opcode in column 1. (BTFSS)
+0016   1E05           00033 BTFSS PORTA,4 ; PREGUNTA SI EL PIN 4 DEL PUERTO A ES CERO
+Warning[203]: Found opcode in column 1. (GOTO)
+0017   281B           00034 GOTO OTRA1 ; LLAMA A
+Warning[203]: Found opcode in column 1. (MOVLW)
+0018   3081           00035 MOVLW 0X81 ; MUEVE 81h A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+0019   0086           00036 MOVWF PORTB ; CARGA W EN EL PUERTO B
+Warning[203]: Found opcode in column 1. (CALL)
+001A   201D           00037 CALL RETARDO ; LLAMA A LA ETIQUETA RETARDO
+001B   0186           00038 OTRA1 CLRF PORTB ; LIMPIA EL PUERTO B
+Warning[203]: Found opcode in column 1. (GOTO)
+001C   2807           00039 GOTO OTRA ; SALTA A LA ETIQUETA OTRA
+001D   3032           00040 RETARDO MOVLW 0X32 ; MUEVE 32h A W
+Warning[203]: Found opcode in column 1. (MOVWF)
+001E   008C           00041 MOVWF CONTA ; CARGA W A CONTA3
+001F   0000           00042 RET NOP ; NO OPERA
+Warning[203]: Found opcode in column 1. (NOP)
+0020   0000           00043 NOP
+Warning[203]: Found opcode in column 1. (NOP)
+0021   0000           00044 NOP
+Warning[203]: Found opcode in column 1. (NOP)
+0022   0000           00045 NOP
+Warning[203]: Found opcode in column 1. (NOP)
+0023   0000           00046 NOP
+Warning[203]: Found opcode in column 1. (NOP)
+0024   0000           00047 NOP
+Warning[203]: Found opcode in column 1. (DECFSZ)
+0025   0B8C           00048 DECFSZ CONTA,1 ; DECREMENTA CONTA1 EN 1 Y SALTA SI ES CERO
+Warning[203]: Found opcode in column 1. (GOTO)
+0026   281F           00049 GOTO RET ; SALTA A LA ETIQUETA RET1
+Warning[203]: Found opcode in column 1. (RETURN)
+0027   0008           00050 RETURN ; RETORNA
+Warning[205]: Found directive in column 1. (END)
+                      00051 END
+MPASM  5.03                  ENCIENDE LED.ASM   11-16-2011  17:30:07         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CONTA                             0000000C
+INICIO                            00000000
+OTRA                              00000007
+OTRA1                             0000001B
+PORTA                             00000005
+PORTB                             00000006
+RET                               0000001F
+RETARDO                           0000001D
+RP0                               00000005
+STATUS                            00000003
+TRISA                             00000005
+TRISB                             00000006
+__16F84                           00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXX-------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    40
+Program Memory Words Free:   984
+
+
+Errors   :     0
+Warnings :    39 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
